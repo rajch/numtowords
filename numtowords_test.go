@@ -13,7 +13,7 @@ func TestInvalidNumber(t *testing.T) {
 		t.Fail()
 	}
 
-	_, err = numtowords.Convert(-1)
+	_, err = numtowords.Convert(numtowords.MinNum - 1)
 	if err == nil {
 		t.Log("expected error")
 		t.Fail()
@@ -119,5 +119,30 @@ func TestHundreds(t *testing.T) {
 			t.Fail()
 		}
 	}
+}
 
+func TestNegatives(t *testing.T) {
+	testcases := map[int]string{
+		-7:   "minus seven",
+		-32:  "minus thirty two",
+		-109: "minus one hundred and nine",
+		-333: "minus three hundred and thirty three",
+		-700: "minus seven hundred",
+		-340: "minus three hundred and forty",
+	}
+
+	for k, v := range testcases {
+		t.Logf("Now testing %v...", k)
+
+		result, err := numtowords.Convert(k)
+		if err != nil {
+			t.Logf("error while converting %v: %v", k, err)
+			t.Fail()
+		}
+
+		if result != v {
+			t.Logf("while converting %v, expected %v, got %v", k, v, result)
+			t.Fail()
+		}
+	}
 }

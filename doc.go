@@ -1,6 +1,5 @@
 // Package numtowords contains methods to convert numbers to words.
-// The first version converts positive integer numbers only, from 0
-// to the MaxNum constant.
+// Currently, it converts numbers between -999 and 999 only.
 //
 // No additional formatting options are provided.
 package numtowords
