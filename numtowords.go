@@ -1,6 +1,9 @@
 package numtowords
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // MinNum is the smallest number that can be converted to words.
 const MinNum = -999
@@ -56,7 +59,7 @@ func Convert(number int) (string, error) {
 
 	if number < 0 {
 		result += "minus "
-		number = number * -1
+		number = int(math.Abs(float64(number)))
 	}
 
 	if number > 99 {
